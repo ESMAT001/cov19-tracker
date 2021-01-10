@@ -504,17 +504,20 @@ $(document).ready(() => {
     }
     //client country data
     async function insertCountryDataChart(countryCode, canvas) {
+        let getCurrentDate = () => {
+            date = new Date();
+            return date.getFullYear() + "-" + date.getMonth() + 1 + "-" + date.getDate()
+        }
         try {
-            let data = await fetch(`https://api.coronatracker.com/v4/analytics/trend/country?countryCode=${countryCode}&startDate=2020-01-01&endDate=2020-09-01`);
+            let data = await fetch(`https://api.coronatracker.com/v5/analytics/trend/country?countryCode=${countryCode}&startDate=2020-01-01&endDate=${getCurrentDate()}`);
             if (data.status == 200) {
-                // console.log("yesssClient");
                 data = await data.json();
-                // console.log(data);
+                console.log(data);
                 let total = [];
                 let death = [];
                 let recoverd = [];
                 let date = [];
-                for (let i = 0; i < data.length - 1; i += 5) {
+                for (let i = 0; i < data.length - 1; i += (Math.round(data.length / 10))) {
                     total.push(data[i].total_confirmed);
                     death.push(data[i].total_deaths);
                     recoverd.push(data[i].total_recovered);
@@ -714,6 +717,7 @@ $(document).ready(() => {
             let code = document.getElementById("textBox").value.toUpperCase();
             let condition = false;
             if (code != "") {
+                j
                 for (let i = 0; i < data.length; i++) {
                     if (code === data[i].countryCode) {
                         condition = true;
@@ -818,7 +822,7 @@ $(document).ready(() => {
                     // console.log("news");
                 for (let i = 0; i < newsData.items.length; i++) {
                     // console.log("news");
-                    let html = `   <div class="row my-3">
+                    let html = `  <div class="row my-3">
                     <div class="col">
                         <div class="row px-lg-3">
                             <div class="col-md-3 col-12 d-flex flex-column justify-content-center">
