@@ -518,10 +518,10 @@ $(document).ready(() => {
                 let recoverd = [];
                 let date = [];
                 for (let i = 0; i < data.length - 1; i += (Math.round(data.length / 10))) {
-                    total.push(data[i].total_confirmed);
-                    death.push(data[i].total_deaths);
-                    recoverd.push(data[i].total_recovered);
-                    date.push(data[i].last_updated.slice(5, 10));
+                    // total.push(data[i].total_confirmed);
+                    // death.push(data[i].total_deaths);
+                    // recoverd.push(data[i].total_recovered);
+                    // date.push(data[i].last_updated.slice(5, 10));
                 }
                 total.push(data[data.length - 1].total_confirmed);
                 death.push(data[data.length - 1].total_deaths);
